@@ -1,0 +1,65 @@
+/*rotatae image at 90 degree
+
+ip :
+1 2 3 4                          
+5 6 7 8               
+9 10 11 12                                                                                                                  
+13 14 15 16 
+
+op:
+4 8 12 16                                                                                                                   
+3 7 11 15                                                                                                                   
+2 6 10 14                                                                                                                   
+1 5 9 13  
+*/
+
+
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+void rotateImage(int arr[][100], int n){
+    
+    //reverse each row 
+    for(int i=0; i<n; i++){
+        int startcol = 0;
+        int endcol = n-1;   
+        while(startcol<endcol){
+            swap(arr[i][startcol], arr[i][endcol]);
+            startcol++;
+            endcol--;
+        }
+    }
+    //transpose or change from row to col
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            if(i<j){
+                 swap(arr[i][j], arr[j][i]);
+            }
+        }
+    }
+}
+
+int main(){
+    int n;
+    cin>>n;
+    
+    //taking input of array
+    int arr[100][100];
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cin>>arr[i][j];
+        }
+    }
+    //printing an array
+    rotateImage(arr, n);
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                cout<<arr[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    
+
+    return 0;
+}

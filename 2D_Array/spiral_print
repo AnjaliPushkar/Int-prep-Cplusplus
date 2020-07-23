@@ -1,0 +1,65 @@
+/* ip: 1 2 3 
+       4 5 6
+       7 8 9 
+ op: 1 2 3 6 9 8 7 4 5
+sRow = startRow, eCol = endCol...*/
+
+#include <iostream>
+using namespace std;
+
+void spiralPrint (int arr[][100], int m, int n)
+{
+  int sRow = 0;
+  int sCol = 0;
+  int eRow = m-1;
+  int eCol = n-1;
+
+  while (sRow <= eRow and sCol <= eCol)
+    {
+      for (int i = sCol; i <= eCol; i++) //printing first row, start to end
+    {
+      cout << arr[sRow][i]<<" ";
+    }
+      sRow++;
+      for (int i = sRow; i <= eRow; i++) //printing last col, top to bottom
+    {
+      cout << arr[i][eCol]<<" ";
+    }
+      eCol--;
+      if(eRow > sRow){
+          for (int i = eCol; i >= sCol; i--)  //printing last row in last to first order
+        {
+          cout << arr[eRow][i]<<" ";
+        }
+      eRow--;
+    }
+      if(eCol>sCol){
+          for (int i = eRow; i >= sRow; i--)  //printing first col, bottom to up
+          {  
+            cout << arr[i][sCol]<<" ";
+        }
+        sCol++;
+      }
+    }
+}
+
+int
+main ()
+{
+  int m, n;
+  cin >> m >> n;
+  int var = 1;
+  int arr[100][100]={0};
+  for (int i = 0; i < m; i++)
+    {
+      for (int j = 0; j < n; j++)
+    {
+      arr[i][j] = var;
+      var += 1;
+      cout << arr[i][j] << " ";
+    }
+      cout << endl;
+    }
+  spiralPrint (arr, m, n);
+  return 0;
+}
