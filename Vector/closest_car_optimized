@@ -1,0 +1,68 @@
+/* find closest cab and print name, distance, location ,coordinates 
+acc to length of car name in increasing order*/
+
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<cstring>
+
+using namespace std;
+
+class Car{
+  public:
+    string car_name;
+    int x, y;
+    Car(){
+        
+    }
+    Car(string n, int x, int y){
+        car_name = n;
+        this->x = x;
+        this->y = y;
+    }
+    int dist(){
+        return x*x + y*y;
+    }
+};
+
+bool compare(Car A, Car B){
+    int d1 = A.dist();
+    int d2 = B.dist();
+    
+    //sort according to the length of car name if equal
+    if(d1==d2){
+        return A.car_name.length()<B.car_name.length();
+    }
+    return d1<d2;
+}
+
+int main(){
+    int n;
+    cin>>n;
+    vector<Car>v;
+    for(int i=0; i<n; i++){
+        int x, y;
+        string name;
+        cin>>name>>x>>y;
+        Car temp(name, x,y);
+        v.push_back(temp);
+    }
+    sort(v.begin(), v.end(), compare);
+    for(auto p: v){
+        cout<<"car "<<p.car_name<<"Dist"<<p.dist()<<" Location "<<p.x<<","<<p.y<<endl;
+    }
+    return 0;
+}
+/*
+Input
+4
+audi 3 4
+sentro 4 5
+maruti 3 2
+bmw 2 2
+Output
+car bmwDist8 Location 2,2
+car marutiDist13 Location 3,2
+car audiDist25 Location 3,4
+car sentroDist41 Location 4,5
+*/
