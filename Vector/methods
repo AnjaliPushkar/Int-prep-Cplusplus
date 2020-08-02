@@ -1,0 +1,54 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main(){
+
+    //initializtaion of vector
+    vector<int>d{1,2,3,4,5};
+    
+    //push back method to push elements at the last of vector, complexity is O(1)
+    d.push_back(16);
+    
+    //pop back to remove last element, complexity is O(1)
+    d.pop_back();
+    
+    //insert at element in the middle
+    d.insert(d.begin()+2, 10);
+    d.insert(d.begin()+2, 4, 20);//4 times 20 after 2nd element
+    
+    //erase element from the middle
+    d.erase(d.begin()+2);
+    d.erase(d.begin()+2, d.begin()+4);
+    
+    //remove element from front and back
+    d.front();
+    d.back();
+    
+    //size and capacity
+    cout<<d.size()<<endl;
+    cout<<d.capacity()<<endl;
+    
+    //resize of vector
+    d.resize(18);
+    
+    //remove all elements
+    d.clear();
+    
+    //check empty or not
+    if(d.empty()){
+        cout<<"empty";
+    }
+    
+    //reserve: we reserve the size of vector in the begining to avoid doubling 
+    //need : vector getting double in the size when half is filled so if one element thn size will be twice and so on
+    //it takes a lot of time to avoid this we use reserve. 
+    v.reserve(1000);
+    
+    //printing vector
+    for(int i=0; i<d.size(); i++){
+        cout<<d[i]<<",";
+    }
+
+    return 0;
+}
