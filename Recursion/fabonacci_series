@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+
+//space complexity is O(n)
+int fabonacci(int n){
+    if(n==0 or n==1){
+        return n;
+    }
+    return fabonacci(n-1) + fabonacci(n-2);
+}
+
+int main(){
+    int n;
+    cin>>n;
+    cout<<fabonacci(n);
+    return 0;
+}
+
+/*
+ip : 6
+op: 8
+how: 0,1,1,2,3,5,8,13....
+*/
