@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+void allOcc(int arr[], int i, int n, int key){
+    if(i==n){
+        return;
+    }
+    if(arr[i]== key){
+        cout<<i<<",";
+    }
+    allOcc(arr, i+1, n, key);
+}
+
+int storeOcc(int arr[], int i, int n, int key, int out[], int j){
+    if(i==n){
+        return j;
+    }
+    if(arr[i] == key){
+        out[j] = i;
+        return storeOcc(arr, i+1, n, key, out, j+1);
+
+    }
+    return storeOcc(arr, i+1, n, key, out, j);
+}
+
+int main() {
+    int arr[] = {1,2,3,7,4,5,6,7,10};
+    int key = 7;
+    int n = sizeof(arr)/sizeof(int);
+    allOcc(arr,0,n ,key);
+    cout<<endl;
+
+    int out[100];
+    int cnt = storeOcc(arr, 0, n, key, out, 0);
+    cout<<"count"<<cnt<<endl;
+    for(int k=0; k<cnt; k++){
+        cout<<out[k]<<" ";
+    }
+    return 0;
+}
+/*
+Output
+3,7, // index of key
+count2 //total occurence
+3 7 //index of key stored in another array
+*/
