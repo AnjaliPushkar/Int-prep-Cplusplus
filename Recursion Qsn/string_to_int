@@ -1,0 +1,25 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int StrToInt(char a[], int len){
+    if(len == 0){
+        return 0;
+    }
+    int digit = a[len-1] -'0'; //last digit
+    int small_digit = StrToInt(a, len-1);
+    return small_digit*10 + digit; //10+2 = 12, 12*10 + 3 = 123....
+}
+
+int main(){
+    char a[] = "1234";
+    int len = strlen(a);
+
+    cout<<StrToInt(a, len)<<endl;
+    cout<<(StrToInt(a, len))+1<<endl; //ans +1 happening bcz it is converted to int
+    return 0;
+}
+/*op: 
+1234
+1235
+*/
