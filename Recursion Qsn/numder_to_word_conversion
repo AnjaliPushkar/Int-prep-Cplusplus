@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+
+char word[][10] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "ten"};
+
+void printSpelling(int n){
+    if(n==0){
+        return;
+    }
+    printSpelling(n/10);
+    int digit = n%10;
+    cout<<word[digit]<<" ";
+}
+
+void printReverseSpelling(int n){
+    if(n==0){
+        return;
+    }
+    int digit = n%10;
+    cout<<word[digit]<<" ";
+    printSpelling(n/10);
+    
+}
+
+int main(){
+    int n;
+    cin>>n;
+    printSpelling(n)<<endl;
+    printReverseSpelling(n);
+    return 0;
+}
+/*ip : 6745
+op: six seven four five 
+five six seven four
+*/
