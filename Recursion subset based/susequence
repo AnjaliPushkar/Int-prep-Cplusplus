@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+
+void generateSubarray(char *in, char *out, int i, int j){
+    //base case
+    if(in[i] == '\0'){
+        out[j] = '\0';
+        cout<<out<<endl;
+        return;
+    }
+    //recrsursive case
+    //including current element
+    out[j] = in[i];
+    generateSubarray(in,out,i+1,j+1);
+
+    //excluding current element
+    generateSubarray(in, out, i+1, j);
+}
+
+int main(){
+    char input[] = "abc";
+    char output[100];
+    generateSubarray(input, output, 0,0);
+    return 0;
+}
+/*
+Input
+4
+Output
+abc
+ab
+ac
+a
+bc
+b
+c
+" "
+*/
