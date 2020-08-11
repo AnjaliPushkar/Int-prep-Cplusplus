@@ -1,0 +1,20 @@
+/*given n, friends who want to go to a party on bikes. Each guy can go as singlesor as a couple. Find the no. of ways in which N freinds can go to the pary
+ex: n=3 ways = 4
+n=2 ways = 2*/
+
+#include <iostream>
+using namespace std;
+
+int friendsProblem(int n){
+    if(n==0 or n==1){
+        return 1;
+    }
+    return friendsProblem(n-1) + (n-1)*friendsProblem(n-2);
+}
+
+int main() {
+    int n;
+    cin>>n;
+    cout<<friendsProblem(n);
+    return 0;
+}
