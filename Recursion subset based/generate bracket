@@ -1,0 +1,38 @@
+//generate the no. of ways ofputting bracket
+#include <iostream>
+using namespace std;
+
+void generateBracket(char out[], int n, int index, int open , int close){
+    //base case
+    if(index == 2*n){
+        out[index] == '\0';
+        cout<<out<<endl;
+        return;
+    }
+    //recursive case
+    if(open<n){
+        out[index] = '(';
+        generateBracket(out, n, index+1, open+1, close);
+    }
+    if(close<open){
+        out[index] = ')';
+        generateBracket(out, n, index+1, open, close+1);
+    }
+}
+
+int main() {
+    int n;
+    cin>>n;
+    char out[100000];
+    int index=0;
+    generateBracket(out, n, 0, 0, 0);
+    return 0;
+}
+
+/*
+
+2
+Output
+(())
+()()
+*/
