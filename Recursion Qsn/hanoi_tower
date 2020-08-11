@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+void hanoiTower(int n, char scr, char helper, char des){
+    if(n==0){
+        return;
+    }
+    hanoiTower(n-1, scr, des, helper); //moving from A to C with the help of B
+    cout<<"shift disk "<<n<<" from "<<scr<<" to "<<des<<endl;
+    hanoiTower(n-1,helper, scr, des); //moving from B to C with the help of A
+
+}
+int main() {
+    int n;
+    cin>>n;
+    hanoiTower(n,'A', 'B', 'C');
+    return 0;
+}
+/* 
+Input
+2
+Output
+shift disk 1 from A to B
+shift disk 2 from A to C
+shift disk 1 from */
+/*
+Input
+3
+Output
+shift disk 1 from A to C
+shift disk 2 from A to B
+shift disk 1 from C to B
+shift disk 3 from A to C
+shift disk 1 from B to A
+shift disk 2 from B to C
+shift disk 1 from A to C
+*/
