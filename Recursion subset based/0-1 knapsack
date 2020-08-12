@@ -1,0 +1,31 @@
+//theif has limited capacity in bag and want to steal those item which gives max profit. 
+#include <iostream>
+using namespace std;
+
+int knapSack(int n, int bagwt, int weights[], int prices[]){
+    if(bagwt ==0 or n==0){
+        return 0;
+    }
+    int ans=0;
+    int include, exclude;
+    include = exclude = 0;
+
+    //include the last element
+    if(weights[n-1] <= bagwt){
+        include = prices[n-1] + knapSack(n-1, bagwt - weights[n-1], weights, prices);
+    }
+    //exclude the last element
+    exclude = knapSack(n-1, bagwt, weights, prices);
+    ans = max(include, exclude);
+    return ans;
+}
+
+int main(){
+    int weights[] = {1, 2, 3, 5};
+    int prices[] = {40, 20, 30, 100};
+    int n=4;
+    int bagwt = 7;
+    cout<<knapSack(n, bagwt, weights, prices);
+    return 0;
+}
+/* op:140 */
