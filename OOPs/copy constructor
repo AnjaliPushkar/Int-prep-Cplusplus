@@ -1,0 +1,107 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+//defining a new datatype
+class Car{
+    private:
+        float price;
+    public:
+        int model;
+        char name[20]; 
+
+    //constructor
+        Car(){
+            cout<<"Showing constructor"<<endl;
+        }
+
+//parametrized constructor
+        Car(float p, int m, const char *n){
+            price = p;
+            model= m;
+            strcpy(name, n);
+        }
+
+//print the updated value
+        void print(){
+            cout<<"name "<<name<<endl;
+            cout<<"model "<<model<<endl;
+            cout<<"price "<<price<<endl;
+        }
+
+//price will be after discount
+        float get_discount(float x){
+            return price*(1.0-x);
+        }
+
+//update the price with discount
+        float apply_discount(float x){
+            price = price*(1.0-x);
+            return price;
+        }
+
+//if price is private we will set price with conditions
+        void set_price(float p){
+            float min_price = 111;
+            if(min_price<p){
+                price = p;
+            }
+            else{
+                price = min_price;
+            }
+        }
+        float get_price(){
+            return price;
+        }
+};
+int main() {
+    //create an object
+    Car c;
+    
+    //copy constructor
+    Car d(2, 333, "Audi");
+    cout<<"d constructor: ";
+    d.print();
+
+    Car e(d);
+    e.set_price(300);
+    cout<<"E constructor :" ;
+    e.print();
+
+
+    //another way of copy constructor
+    Car f = e;
+    cout<<"F constructor: ";
+    f.print();
+
+
+    c.model = 005;
+    c.name[0] = 'B';
+    c.name[1] = 'M';
+    c.name[2] = 'W';
+    c.name[3] = '\0';
+
+    // c.set_price(-100);
+    c.set_price(200);
+    cout<<"c constructor: ";
+    c.print();
+    
+return 0;
+}
+
+/*
+Output
+Showing constructor
+d constructor: name Audi
+model 333
+price 2
+E constructor :name Audi
+model 333
+price 300
+F constructor: name Audi
+model 333
+price 300
+c constructor: name BMW
+model 5
+price 200
+*/
