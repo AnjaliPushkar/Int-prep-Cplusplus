@@ -16,7 +16,7 @@ class Car{
         }
 
 //parametrized constructor
-        Car(float p, int m, char *n){
+        Car(float p, int m, const char *n){
             price = p;
             model= m;
             strcpy(name, n);
@@ -24,9 +24,9 @@ class Car{
 
 //print the updated value
         void print(){
-            cout<<"name"<<name<<endl;
-            cout<<"model"<<model<<endl;
-            cout<<"price"<<price<<endl;
+            cout<<"name "<<name<<endl;
+            cout<<"model "<<model<<endl;
+            cout<<"price "<<price<<endl;
         }
 
 //price will be after discount
@@ -74,15 +74,13 @@ int main() {
 return 0;
 }
 /*
-input -100
-op:
-nameBMW
-model5
-price111
 
-ip: 200
-op:
-nameBMW
-model5
-price200
+Showing constructor  //Car constructor
+name Audi //d constructor
+model 333
+price 2
+name BMW //c constructor
+model 5
+price 200
+
 */
