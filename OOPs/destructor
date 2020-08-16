@@ -1,0 +1,89 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+//defining a new datatype
+class Car{
+    private:
+        float price;
+    public:
+        int model;
+        char *name; 
+
+    //constructor
+        Car(){
+            name = NULL;
+        }
+
+//parametrized constructor
+        Car(float p, int m, const char *n){
+            price = p;
+            model= m;
+            name = new char[strlen(n)+1];
+            strcpy(name, n);
+        }
+//defining own constructor to avoid shallow copy
+    Car(Car &X){
+        cout<<"inside copy constructor"<<endl;
+        price = X.price;
+        model = X.model;
+        //deep copy
+        name = new char[strlen(X.name)+1];
+        strcpy(name, X.name);
+    }
+    void operator=(Car &X){
+        price = X.price;
+        model = X.model;
+        //deep copy
+        name = new char[strlen(X.name)+1];
+        strcpy(name, X.name);
+    }
+
+    void set_price(float p){
+        price = p;
+    }    
+//print the updated value
+        void print(){
+            cout<<"name "<<name<<endl;
+            cout<<"model "<<model<<endl;
+            cout<<"price "<<price<<endl;
+        }
+
+//destructer for dynamically allocated members
+    ~Car(){
+        cout<<"Destroying car "<<name<<endl;
+        if(name != NULL){
+            delete [] name;
+        }
+    }
+};
+int main() {
+
+      Car c(2, 333, "BMW");//parameterised const
+      Car d(c);//copy const
+      d.name[0] = 'A';
+      d.set_price(300);
+      c.print();
+      d.print();
+   
+    Car *e = new Car(1,222,"ferrari");
+    delete e;
+    
+return 0;
+}
+
+/*
+op:
+//destroying from bottom to up
+
+inside copy constructor
+name BMW
+model 333
+price 2
+name AMW
+model 333
+price 300
+Destroying car ferrari
+Destroying car AMW
+Destroying car BMW
+*/
