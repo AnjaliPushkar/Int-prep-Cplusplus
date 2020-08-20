@@ -22,6 +22,7 @@ void insertAtHead(node *&head, int d){
     head= n;
 }
 
+//O(n) time with O(1) space
 void reverse(node *&head){
     node *current = head;
     node *prev = NULL;
