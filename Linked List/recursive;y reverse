@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+class node{
+    public:
+        int data;
+        node *next;
+    //constructor
+        node(int d){
+            data = d;
+            next = NULL;
+        }
+};
+
+void insertAtHead(node *&head, int d){
+    if(head == NULL){
+        head = new node(d);
+        return;
+    }
+    node *n = new node(d);
+    n->next = head;
+    head= n;
+}
+
+node* reverseRecursively(node *&head){
+   if(head == NULL or head->next == NULL){
+       return head;
+   }
+   node *small_head = reverseRecursively(head->next); //last node
+   head->next->next = head;
+   head->next = NULL;
+   return small_head;
+}
+
+//O(n) time with O(n) space
+void print(node *head){
+    while(head != NULL){
+        cout<<head->data<<" -> ";
+        head = head->next;
+    }
+}
+
+node *take_input(){
+    int d;
+    cin>>d;
+    node *head = NULL;
+    while(d != -1){
+        insertAtHead(head, d);
+        cin>>d;
+   }
+   return head;
+}
+
+int main(){
+    node *head = take_input();
+    print(head);
+    cout<<endl;
+    head = reverseRecursively(head);
+    print(head);
+
+    return 0;
+}
+/*
+Input
+1 2 3 4 5  -1
+
+Output
+5 -> 4 -> 3 -> 2 -> 1 -> 
+1 -> 2 -> 3 -> 4 -> 5 -> 
+/*
