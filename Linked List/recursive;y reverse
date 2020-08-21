@@ -22,6 +22,7 @@ void insertAtHead(node *&head, int d){
     head= n;
 }
 
+//O(n) time with O(n) space
 node* reverseRecursively(node *&head){
    if(head == NULL or head->next == NULL){
        return head;
@@ -32,7 +33,6 @@ node* reverseRecursively(node *&head){
    return small_head;
 }
 
-//O(n) time with O(n) space
 void print(node *head){
     while(head != NULL){
         cout<<head->data<<" -> ";
