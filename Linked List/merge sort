@@ -1,0 +1,122 @@
+#include <iostream>
+using namespace std;
+
+class node{
+    public:
+        int data;
+        node *next;
+    //constructor
+        node(int d){
+            data = d;
+            next = NULL;
+        }
+};
+
+void insertAtHead(node *&head, int d){
+    if(head == NULL){
+        head = new node(d);
+        return;
+    }
+    node *n = new node(d);
+    n->next = head;
+    head= n;
+}
+
+node* midPoint(node *head){
+    if(head == NULL or head->next == NULL){
+        return head;
+    }
+    node *slow = head;
+    node *fast = head->next;
+    while(fast != NULL and fast->next != NULL){
+         fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow;
+}
+
+node* merge(node *a, node* b){
+	if(	a==NULL){
+	return b;
+    }
+	else if(b==NULL){
+	return a;
+    }
+	node* c;
+	if(a->data < b->data){
+	c=a;
+	c->next=merge(a->next,b);}
+	else{
+		c=b;
+		c->next=merge(a,b->next);
+
+	}
+	return c;
+
+}
+
+node *mergeSort(node *head){
+    if(head == NULL or head->next == NULL){
+        return head;
+    }
+    
+    //break
+    node *mid = midPoint(head);
+    node *a = head;
+    node *b = mid->next;
+    mid->next = NULL;
+
+    //rec sort the two parts
+    a = mergeSort(a);
+    b = mergeSort(b);
+
+    //merge them
+    node *c = merge(a,b);
+    return c;
+}
+
+void print(node *head){
+    while(head != NULL){
+        cout<<head->data<<" -> ";
+        head = head->next;
+    }
+}
+
+node* takeInput(node*& head) 
+{ 
+    int d;
+    cin>>d;
+    while(d != -1){
+        insertAtHead(head, d);
+        cin>>d;
+   }
+   return head;
+} 
+
+ostream& operator<<(ostream& os, node* head) 
+{ 
+    print(head);
+    return os; 
+} 
+  
+istream& operator>>(istream& is, node*& head) 
+{ 
+    takeInput(head); 
+    return is;
+} 
+  
+int main() 
+{ 
+    node* head = NULL; 
+    cin >> head; 
+    cout << head<<endl; 
+    head = mergeSort(head);
+    cout<<head<<endl;
+    return 0; 
+} 
+/*nput
+9 4 8 2 7 -1
+Output
+7 -> 2 -> 8 -> 4 -> 9 -> 
+2 -> 4 -> 7 -> 8 -> 9 -> 
+*/
