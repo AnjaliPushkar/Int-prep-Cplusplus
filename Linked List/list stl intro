@@ -1,0 +1,39 @@
+#include <iostream>
+#include<list>
+using namespace std;
+int main() {
+    list<int>l;
+
+    //initialization
+    list<int>l1{1,2,3,4,5};
+
+    //for diff datatypes
+    list<string>l2{"Anj", "Car", "Bus"};
+    l2.push_back("X");
+
+    //sort
+    l2.sort();
+
+    //reverse
+    l2.reverse();
+
+    //pop out
+    cout<<l2.front()<<endl;
+    l2.pop_front();
+
+    //add to the front of list
+    l2.push_back("Apple");
+
+    //iterate over the list and print the data
+    for(auto it=l2.begin(); it!=l2.end(); it++){
+        cout<<(*it)<<"->";
+    }   
+    cout<<endl;
+
+    //iterate over the list and pritn the data
+    for(auto s: l2){
+        cout<<s<<"-->";
+    }
+
+    return 0;
+}
