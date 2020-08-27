@@ -23,17 +23,50 @@ int main() {
 
     //add to the front of list
     l2.push_back("Apple");
+    l2.push_back("orange");
+    l2.push_back("banana");
+    l2.push_back("orange");
+    l2.push_back("fruit");
 
     //iterate over the list and print the data
     for(auto it=l2.begin(); it!=l2.end(); it++){
-        cout<<(*it)<<"->";
+        // cout<<(*it)<<"->";
     }   
-    cout<<endl;
 
     //iterate over the list and pritn the data
-    for(auto s: l2){
+    for(string s: l2){
         cout<<s<<"-->";
     }
+    cout<<endl;
+
+    //remove all occurences of given element
+    string s;
+    cin>>s;
+    l2.remove(s);
+
+    //iterate over the list and pritn the data
+    for(string s: l2){
+        cout<<s<<"-->";
+    }
+    cout<<endl;
+
+    //erase one more elements at it place 
+    auto it = l2.begin();
+    it++;
+    it++;
+    l2.erase(it);
+
+    //insert element at it position
+    it = l2.begin();
+    //increment it according to the place where to put the element
+    it++;
+    l2.insert(it, "yellow");
+
+    //iterate over the list and pritn the data
+    for(string s: l2){
+        cout<<s<<"-->";
+    }
+    cout<<endl;
 
     return 0;
 }
