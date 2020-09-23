@@ -29,6 +29,7 @@ node *buildTree(){
     return root;
 }
 
+//complexity O(n)
 int countNode(node*root){
     if(root == NULL){
         return 0;
